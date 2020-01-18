@@ -1,0 +1,31 @@
+<div class="container register-form">
+    <div class="form">
+        <form (submit)="onRegisterSubmit()">
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="name" name="name" class="form-control"
+                                placeholder="Name *" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="email" name="email" class="form-control"
+                                placeholder="Email *" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="password" name="password" class="form-control"
+                                placeholder=" Password *" />
+                        </div>
+                        <div class="form-group">
+                        <input type="text" [(ngModel)]="password" name="password" class="form-control" placeholder="Confirm Password *"/>
+                    </div>
+                    </div>
+                </div>
+                <button type="submit" class="btnSubmit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

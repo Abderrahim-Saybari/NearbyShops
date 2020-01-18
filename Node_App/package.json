@@ -1,0 +1,23 @@
+{
+  "name": "backendshops",
+  "version": "1.0.0",
+  "description": "backend side of the application nearly shops",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "author": "Abdo Saybari",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "jwt-simple": "^0.5.6",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  }
+}
