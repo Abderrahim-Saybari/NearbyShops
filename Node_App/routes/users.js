@@ -25,10 +25,10 @@ router.post('/register', (req, res, next) => {
 
 // Authenticate
 router.post('/authenticate', (req, res, next) => {
-    const username = req.body.name;
+    const email = req.body.email;
     const password = req.body.password;
 
-    User.getUserByUsername(username, (err,user) => {
+    User.getUserByEmail(email, (err,user) => {
         if(err) throw err;
         if(!user){
             return res.json({success: false, msg: 'user not found'});
@@ -45,7 +45,8 @@ router.post('/authenticate', (req, res, next) => {
                     user: {
                         id: user._id,
                         name: user.name,
-                        email: user.email
+                        email: user.email,
+                        password: user.password
                     }
                 });
             }else{
