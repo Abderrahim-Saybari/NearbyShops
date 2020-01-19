@@ -3,16 +3,12 @@ const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
 
-// User schema 
+// User schema
 const UserSchema = mongoose.Schema({
     name: {
         type: String
     },
     email: {
-        type: String,
-        required: true
-    },
-    username: {
         type: String,
         required: true
     },
@@ -47,4 +43,4 @@ module.exports.comparePassword = function(condidatePassword, hash, callback){
         if(err) throw err;
         callback(null, isMatch);
     });
-} 
+}

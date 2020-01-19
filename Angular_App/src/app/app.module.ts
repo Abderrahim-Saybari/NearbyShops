@@ -12,6 +12,9 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -25,10 +28,11 @@ import { ValidateService } from './services/validate.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [ValidateService],
+  providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

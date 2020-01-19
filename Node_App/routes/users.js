@@ -11,14 +11,13 @@ router.post('/register', (req, res, next) => {
     let newUser = new User ({
         name: req.body.name,
         email: req.body.email,
-        username: req.body.username,
         password: req.body.password
     });
     User.addUser(newUser, (err) => {
         if(err){
-            res.json({success: false, msg:'Failed to register user'});
+            res.json({"success": false, "msg":'Failed to register user'});
         }else{
-            res.json({ success: true, msg: 'User registered' });
+            res.json({ "success": true, "msg": 'User registered' });
         }
     });
 
@@ -26,7 +25,7 @@ router.post('/register', (req, res, next) => {
 
 // Authenticate
 router.post('/authenticate', (req, res, next) => {
-    const username = req.body.username;
+    const username = req.body.name;
     const password = req.body.password;
 
     User.getUserByUsername(username, (err,user) => {
@@ -46,7 +45,6 @@ router.post('/authenticate', (req, res, next) => {
                     user: {
                         id: user._id,
                         name: user.name,
-                        username: user.username,
                         email: user.email
                     }
                 });
@@ -64,5 +62,5 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 });
 
 
-// exports the module 
+// exports the module
 module.exports = router;
