@@ -5,8 +5,8 @@
         <a class="p-2 text-dark" [routerLinkActive]= "['active']" [routerLink]="['/']">Nearby Shops</a>
         <a class="p-2 text-dark" [routerLinkActive]= "['active']" [routerLink]="['/Prefered-Shops']">My Prefered Shops</a>
     </nav>
-    <a class="btn btn-outline-primary" [routerLinkActive]= "['active']" [routerLink]="['/register']">Register</a>
-    <a class="btn btn-outline-success" [routerLinkActive]= "['active']" [routerLink]="['/login']">Sign in</a>
-    <a class="btn btn-outline-danger" [routerLinkActive]="['active']" href="#" (click)="onLogoutClick()">Sign out</a>
+    <a *ngIf="!authService.loggedIn()" class="btn btn-outline-primary" [routerLinkActive]= "['active']" [routerLink]="['/register']">Register</a>
+    <a *ngIf="!authService.loggedIn()" class="btn btn-outline-success" [routerLinkActive]= "['active']" [routerLink]="['/login']">Sign in</a>
+    <a *ngIf="authService.loggedIn()" class="btn btn-outline-danger" [routerLinkActive]="['active']" href="#" (click)="onLogoutClick()">Sign out</a>
 
 </div>
