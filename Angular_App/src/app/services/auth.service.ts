@@ -43,7 +43,12 @@ export class AuthService {
   }
 
   tokenNotExpired() {
-    const token: string = this.authToken;
+    // get the token from the global variable
+    let token: string = this.authToken;
+    // in case if the user reload the page he gonna lose the variable content so we check the localStorage of the browser
+    if (token == null) {
+         token = localStorage.getItem('token');
+    }
 
     return token != null && !this.jwtHelper.isTokenExpired(token);
   }
