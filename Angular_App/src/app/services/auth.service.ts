@@ -31,6 +31,10 @@ export class AuthService {
     this.authToken = token;
     this.user = user;
   }
+  updateUserData(user){
+    localStorage.setItem('user', JSON.stringify(user));
+    this.user = user;
+  }
 
   loggedIn() {
     return this.tokenNotExpired();
@@ -51,5 +55,12 @@ export class AuthService {
     }
 
     return token != null && !this.jwtHelper.isTokenExpired(token);
+  }
+  getToken() {
+    return localStorage.getItem('token');
+  }
+  getCurrentUser(){
+    this.user = JSON.parse(localStorage.getItem('user'));
+    return this.user;
   }
 }

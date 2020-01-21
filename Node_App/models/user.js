@@ -15,7 +15,10 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    preferredShops_id:[{
+        type: String
+    }]
 });
 
 const user = module.exports = mongoose.model('user', UserSchema);

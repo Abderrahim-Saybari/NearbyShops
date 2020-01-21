@@ -1,48 +1,16 @@
-<div class="container">
-    <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 shadow-sm">
+<div class="container" style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+    <div *ngFor="let shop of nearbyShops" class="card-deck mb-3 text-center" style="width: 25vw; margin-right: 1vw;">
+        <div class="card mb-3 shadow-sm">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Shop Name </h4>
+                <h4 class="my-0 font-weight-normal">{{shop.name}} </h4>
             </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">image </h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>image ......</li>
-                    <li>............</li>
-                    <li>............</li>
-                    <li> loading ...</li>
-                </ul>
-                <button type="button" class="btn btn-danger">Remove</button>
+            <div class="card-body" style="height: 45vh;">
+                <img [src]="shop.image_url" alt="" style="width: 100%; height: 100%;">
             </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Shop Name</h4>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">image </h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>image ......</li>
-                    <li>............</li>
-                    <li>............</li>
-                    <li> loading ...</li>
-                </ul>
-                <button type="button" class="btn btn-danger">Remove</button>
-            </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Shop Name</h4>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">image </h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>image ......</li>
-                    <li>............</li>
-                    <li>............</li>
-                    <li> loading ...</li>
-                </ul>
-                <button type="button" class="btn btn-danger">Remove</button>
+            <div style="height: 10vh;display: flex; justify-content: space-evenly; align-items: center;">
+                <button style="width: 5vw;" type="button" (click)="likeShop(shop._id)" class="left btn btn-success">like</button>
+                <button type="button" (click)="dislikeShop(shop._id)" class="right btn btn-danger">dislike</button>
             </div>
         </div>
     </div>
+</div>

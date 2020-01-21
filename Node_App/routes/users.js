@@ -11,7 +11,8 @@ router.post('/register', (req, res, next) => {
     let newUser = new User ({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        preferredShops_id: []
     });
     User.addUser(newUser, (err) => {
         if(err){
@@ -46,7 +47,8 @@ router.post('/authenticate', (req, res, next) => {
                         id: user._id,
                         name: user.name,
                         email: user.email,
-                        password: user.password
+                        password: user.password,
+                        preferredShops_id: user.preferredShops_id
                     }
                 });
             }else{
@@ -55,12 +57,37 @@ router.post('/authenticate', (req, res, next) => {
         });
     });
 });
+// preferredShops
+router.put('/preferredShops/:shop_id', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    let shop_id = req.params.shop_id;
+    let user = JSON.parse(req.body.user);
+    let shopIndex = user.preferredShops_id.indexOf(shop_id);
+
+    if(shopIndex != -1){
+      user.preferredShops_id = user.preferredShops_id.filter((id) => id != shop_id);
+    }else{
+      user.preferredShops_id.push(shop_id);
+    }
+    console.log(user);
+    User.findOne({'_id': user._id}, (err, doc) => {
+      if (doc){
+        doc.preferredShops_id = user.preferredShops_id;
+        doc.save();
+        res.json({user: doc});
+      }
+      if(err)
+      console.log(err);
+    });
+});
+
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     // res.send('PROFILE');
     res.json({user: req.user});
 });
+
+
 
 
 // exports the module
