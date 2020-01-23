@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuards } from './guards/auth.guards';
+import { NearbyShopsComponent } from './components/nearby-shops/nearby-shops.component';
+import { PreferredShopsComponent } from './components/preferred-shops/preferred-shops.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuards] },
+  { path: 'nearbyShops', component: NearbyShopsComponent, canActivate: [AuthGuards] },
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'Prefered-Shops', component: DashboardComponent, canActivate: [AuthGuards]}
+  { path: 'Prefered-Shops', component: PreferredShopsComponent, canActivate: [AuthGuards]}
 ];
 
 @NgModule({

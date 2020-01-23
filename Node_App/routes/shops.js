@@ -31,8 +31,5 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), (req, res, ne
 //     // res.send('places');
 //     res.json({shop: req.shops});
 // });
-
-
-
 // exports the module
 module.exports = router;

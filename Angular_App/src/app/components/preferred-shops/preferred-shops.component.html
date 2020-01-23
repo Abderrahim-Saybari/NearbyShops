@@ -1,15 +1,14 @@
 <div class="container" style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
-    <div *ngFor="let shop of nearbyShops" class="card-deck mb-3 text-center" style="width: 25vw; margin-right: 1vw;">
+    <div *ngFor="let shop of preferredShops" class="card-deck mb-3 text-center" style="width: 25vw; margin-right: 1vw;">
         <div class="card mb-3 shadow-sm">
             <div class="card-header">
                 <h4 class="my-0 font-weight-normal">{{shop.name}} </h4>
             </div>
-            <div class="card-body" style="height: 45vh;">
+            <div class="card-body" style="height: 40vh;">
                 <img [src]="shop.image_url" alt="" style="width: 100%; height: 100%;">
             </div>
             <div style="height: 10vh;display: flex; justify-content: space-evenly; align-items: center;">
-                <button style="width: 5vw;" type="button" (click)="likeShop(shop._id)" class="left btn btn-success">like</button>
-                <button type="button" (click)="dislikeShop(shop._id)" class="right btn btn-danger">dislike</button>
+                <button type="button" (click)="unlikeShop(shop._id)" class="right btn btn-danger">Remove</button>
             </div>
         </div>
     </div>

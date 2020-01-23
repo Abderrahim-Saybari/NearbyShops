@@ -9,22 +9,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NearbyShopsComponent } from './components/nearby-shops/nearby-shops.component';
+import { PreferredShopsComponent } from './components/preferred-shops/preferred-shops.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    HomeComponent,
-    DashboardComponent,
-    NavbarComponent
+    RegisterComponent,   
+    NavbarComponent,
+    NearbyShopsComponent,
+    PreferredShopsComponent
   ],
   imports: [
     BrowserModule,

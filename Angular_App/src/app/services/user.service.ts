@@ -12,11 +12,11 @@ export class UserService {
     getLocalization() {
         return this.http.get('http://ipapi.co/json');
     }
-    modifyPreferredShop(shop_id){
+    modifyPreferredShop(shop_id: any){
         
         const authtoken = this.authService.getToken();
         let user = localStorage.getItem('user');
-        return this.http.put('http://localhost:3000/users/preferredShops/'+ shop_id, {'user':user}, {
+        return this.http.put('http://localhost:3000/users/preferredShops/'+shop_id, {'user':user}, {
             headers: { 'Content-Type': 'application/json', Authorization: authtoken }
         });
     }

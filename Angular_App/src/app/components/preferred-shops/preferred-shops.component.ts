@@ -4,20 +4,19 @@ import { ShopService } from 'src/app/services/shop.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-preferred-shops',
+  templateUrl: './preferred-shops.component.html',
+  styleUrls: ['./preferred-shops.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class PreferredShopsComponent implements OnInit {
+  preferredShops = [];
+  currentLocalisation = { latitude: 0, longitude: 0 };
+  currentUser: any;
 
-  preferredShops= [];
-  currentLocalisation = {latitude: 0, longitude: 0};
-  currentUser;
-  
 
   constructor(private userService: UserService,
-              private shopService: ShopService,
-              private authService: AuthService) { }
+    private shopService: ShopService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.userService.getLocalization().subscribe((data: { latitude: number, longitude: number }) => {
@@ -29,9 +28,9 @@ export class DashboardComponent implements OnInit {
         let allShops = (data as { shops: [] }).shops;
         this.currentUser = this.authService.getCurrentUser();
         console.log(allShops);
-        
+
         this.currentUser.preferredShops_id.forEach(shop_id => {
-          this.preferredShops.push(allShops.filter(shop => (shop as {_id})._id == shop_id)[0]);
+          this.preferredShops.push(allShops.filter(shop => (shop as { _id })._id == shop_id)[0]);
         })
 
         this.preferredShops.sort(this.sortShops.bind(this))
@@ -39,7 +38,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  unlikeShop(shopId) {
+  unlikeShop(shopId: any) {
     this.preferredShops = this.preferredShops.filter(shop => shop._id != shopId);
     this.userService.modifyPreferredShop(shopId).subscribe((data: { user }) => {
 
@@ -49,7 +48,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  sortShops(shop1, shop2) {
+  sortShops(shop1: any, shop2: any) {
     let distanceToShop1 = this.calcDistanceWithLatLon(
       shop1.latitude, shop1.longitude, this.currentLocalisation.latitude, this.currentLocalisation.longitude
     )
@@ -66,7 +65,7 @@ export class DashboardComponent implements OnInit {
   }
 
   // function that calculates distances using longitude and latitude (a real pain in the a** calculations)
-  calcDistanceWithLatLon(lat1, lon1, lat2, lon2) {
+  calcDistanceWithLatLon(lat1: any, lon1: any, lat2: any, lon2: any) {
     const R = 6371; // Radius of the earth in km
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -78,5 +77,6 @@ export class DashboardComponent implements OnInit {
     const d = R * c; // Distance in km
     return d;
   }
+
 
 }

@@ -44,7 +44,7 @@ router.post('/authenticate', (req, res, next) => {
                     success: true,
                     token: 'JWT '+token,
                     user: {
-                        id: user._id,
+                        _id: user._id,
                         name: user.name,
                         email: user.email,
                         password: user.password,
@@ -68,7 +68,6 @@ router.put('/preferredShops/:shop_id', passport.authenticate('jwt', {session: fa
     }else{
       user.preferredShops_id.push(shop_id);
     }
-    console.log(user);
     User.findOne({'_id': user._id}, (err, doc) => {
       if (doc){
         doc.preferredShops_id = user.preferredShops_id;
